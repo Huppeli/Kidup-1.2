@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:plainpie="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.thedroidboy.lockscreentest.MainActivity"
+    android:background="#ebebeb">
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="27px"
+        tools:context="com.thedroidboy.lockscreentest.MainActivity"
+        android:weightSum="1"
+        android:background="@color/colorAqua">>
+    -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary">
+
+            <ImageView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/kidup_logo_icon"
+                android:textColor="@android:color/white"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center"
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+        <!-- Layout for content is here. This can be a RelativeLayout  -->
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tableRow1"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <az.plainpie.PieView
+                android:id="@+id/pieView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                plainpie:inner_pie_padding="20"
+                plainpie:percentage="50"
+                plainpie:percentage_size="25"
+                plainpie:inner_text_visibility="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                />
+            <!-- layout_margin = hack to get it center -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tap to convert"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/kidupDarkBlue"
+                android:layout_below="@+id/pieView"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/textSmaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pieView"
+                android:textSize="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                android:text="Activity into screentime"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your screentime"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:textColor="@color/kidupDarkBlue"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_centerInParent="true"
+                android:layout_above="@+id/pieView"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center">
+            <com.github.lzyzsd.circleprogress.DonutProgress
+                android:layout_marginLeft="50dp"
+                android:id="@+id/donut_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:donut_progress="50"
+                custom:donut_finished_color="@color/kidupPercentageFill"
+                custom:donut_text_color="@color/kidupDarkBlue"
+                custom:donut_circle_starting_degree="270"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tableRow2"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/activityHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activity"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/kidupDarkBlue"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                />
+            <az.plainpie.PieView
+                android:id="@+id/pieView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/activityHeader"
+                plainpie:inner_pie_padding="20"
+                plainpie:percentage="50"
+                plainpie:percentage_size="25"
+                plainpie:inner_text_visibility="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <!--
+            <TextView
+                android:text="0"
+                android:textSize="40dp"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_steps"/>
+                -->
+            <!--
+                Old textview to show time
+            <TextView
+                android:textSize="25sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTime" />
+                -->
+            <Button
+                android:text="Transfer steps to time"
+                android:textSize="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnFinish"
+                android:layout_below="@+id/pieView2"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_assignment"
+                />
+            <!--
+            old button
+            <Button
+                android:id="@+id/btnLock"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                />
+            -->
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnLock"
+                android:text="Test button to lock phone"
+                android:scaleType="fitCenter"
+                android:layout_centerInParent="true"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:textColor="@color/kidupDarkBlue"
+                app:backgroundTint="@color/kidupNewGreen"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</TableLayout>
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="30px"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingTop="27px"
+    tools:context="com.thedroidboy.lockscreentest.MainActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_info"/>
+
+    <Button
+        android:text="Earn time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnFinish" />
+</LinearLayout>
+-->
+
+

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:plainpie="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.thedroidboy.lockscreentest.MainActivity"
+    android:background="#ebebeb">
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="27px"
+        tools:context="com.thedroidboy.lockscreentest.MainActivity"
+        android:weightSum="1"
+        android:background="@color/colorAqua">>
+    -->
+    <LinearLayout
+        android:id="@+id/tableRow1"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <az.plainpie.PieView
+                android:id="@+id/pieView"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_centerHorizontal="true"
+                plainpie:inner_pie_padding="20"
+                plainpie:inner_text_visibility="true"
+                plainpie:percentage="75"
+                plainpie:percentage_size="25"
+                plainpie:color="@color/kidupDarkBlue"
+                />
+            <!-- layout_margin = hack to get it center -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pieView"
+                android:layout_marginTop="20dp"
+                android:textSize="16dp"
+                android:layout_centerInParent="true"
+                android:text="Remaining screentime"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Earn screentime"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/kidupDarkBlue"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_centerInParent="true"
+                android:layout_above="@+id/pieView"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/tasksLeft"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_assignment" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is just a filler box"
+                android:textColor="@color/colorWhite"
+                android:layout_below="@+id/tasksLeft"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tableRow2"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Steps earned"
+                android:textSize="20dp"
+                android:textColor="@color/colorAccent"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:text="0"
+                android:textSize="40dp"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_steps"/>
+            <!--
+                Old textview to show time
+            <TextView
+                android:textSize="25sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTime" />
+                -->
+            <Button
+                android:text="Transfer steps to time"
+                android:textSize="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnFinish"
+                android:layout_below="@+id/tv_steps"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/layout_bg_white"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_assignment"
+                />
+            <!--
+            old button
+            <Button
+                android:id="@+id/btnLock"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                />
+            -->
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnLock"
+                android:text="Test button to lock phone"
+                android:scaleType="fitCenter"
+                android:layout_centerInParent="true"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:textColor="@color/kidupDarkBlue"
+                app:backgroundTint="@color/kidupNewGreen"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</TableLayout>
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="27px"
+        tools:context="com.thedroidboy.lockscreentest.MainActivity"
+        android:weightSum="1">
+
+        <TextView
+            android:text="Steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info"/>
+
+
+
+        <Button
+            android:text="Earn time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnFinish" />
+    </LinearLayout>
+    -->
+
