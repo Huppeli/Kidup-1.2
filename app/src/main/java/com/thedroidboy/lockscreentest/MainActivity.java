@@ -7,9 +7,11 @@ import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -87,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startService(new Intent(this, LockScreenService.class));
         setContentView(R.layout.activity_main);
 
-
+        startService(new Intent(this, CountDownService.class));
+        Log.i("CountDownService", "Started service");
 
         btnLock = (Button) findViewById(R.id.btnLock);
 
@@ -210,6 +213,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startActivityForResult(intent, RESULT_ENABLE);
     }
 
+    private BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateGUI(intent);
+        }
+    };
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case RESULT_ENABLE:
@@ -267,7 +277,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Log.d("VEIKKO", "sending steps " + steps);
         long millis = (long) timeLeft;
 
-
+        registerReceiver(br, new IntentFilter(CountDownService.BROADCAST_ACTION));
+        Log.d("COUNTDOWNSERVICE", "Registered broadcast receiver");
 
 
         String hms = String.format("%02d:%02d:%02d" , TimeUnit.MILLISECONDS.toHours(millis),TimeUnit.MILLISECONDS.toMinutes(millis)-TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)) );
@@ -343,6 +354,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
+    }
+
+    private void updateGUI(Intent intent) {
+        if (intent.getExtras() != null) {
+            long millisUntilFinished = intent.getLongExtra("countdown", 0);
+            Log.d("COUNTDOWNSERVICE" , "countdown seconds remaining: " + millisUntilFinished / 1000);
+            String hms = String.format("%02d:%02d:%02d" , TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)-TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)) );
+            pieView.setInnerText(hms);
+        }
     }
 
     @Override

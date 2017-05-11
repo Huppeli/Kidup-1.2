@@ -12,12 +12,17 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.os.CountDownTimer;
 import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
 public class CountDownService extends Service {
+
+    private static final String TAG = "CountDownService";
+    public static final String BROADCAST_ACTION ="com.thedroidboy.lockscreentest";
+    Intent bi = new Intent(BROADCAST_ACTION);
+
+
 
     public int onStartCommand (Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
@@ -130,13 +135,21 @@ public class CountDownService extends Service {
                         long millis = millisUntilFinished ;
                         String hms = String.format("%02d:%02d:%02d" , TimeUnit.MILLISECONDS.toHours(millis),TimeUnit.MILLISECONDS.toMinutes(millis)-TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)) );
 
+                        Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000);
+                        bi.putExtra("countdown", millisUntilFinished);
+                        sendBroadcast(bi);
+
                         System.out.println(hms);
                        /* MainActivity.textViewTime.setText(hms); */
-                        MainActivity.pieView.setInnerText(hms);
+                       /* MainActivity.pieView.setInnerText(hms); */
                         timeLeft = millisUntilFinished;
+
+                        /*
                         Intent mIntent = new Intent(CountDownService.this, MainActivity.class);
                         mIntent.putExtra("timeLeft", millisUntilFinished);
                         CountDownService.this.startService(mIntent);
+                        */
+
                         Log.d("VEIKKO2", "Time left on tick : " + timeLeft);
                         Log.d("VEIKKO2", "Sending time left to main : " + millisUntilFinished);
                     }
@@ -145,8 +158,9 @@ public class CountDownService extends Service {
 
                     public void onFinish() {
                         Log.d("VEIKKO2", "Timer onFinish");
+                        Log.d(TAG, "Timer finished");
                       /*  MainActivity.textViewTime.setText("Out of time!"); */
-                        MainActivity.pieView.setInnerText("Out of time!");
+                        /* MainActivity.pieView.setInnerText("Out of time!"); */
                         DevicePolicyManager deviceManager = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
                         ComponentName compName = new ComponentName(CountDownService.this, MyAdmin.class);
                         boolean active = deviceManager.isAdminActive(compName);
@@ -183,9 +197,14 @@ public class CountDownService extends Service {
                 long millis = millisUntilFinished ;
                 String hms = String.format("%02d:%02d:%02d" , TimeUnit.MILLISECONDS.toHours(millis),TimeUnit.MILLISECONDS.toMinutes(millis)-TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)) );
 
+
+                Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000);
+                bi.putExtra("countdown", millisUntilFinished);
+                sendBroadcast(bi);
+
                 System.out.println(hms);
                /* MainActivity.textViewTime.setText(hms); */
-                MainActivity.pieView.setInnerText(hms);
+               /* MainActivity.pieView.setInnerText(hms); */
                 timeLeft = millisUntilFinished;
                 Intent mIntent = new Intent(CountDownService.this, MainActivity.class);
                 mIntent.putExtra("timeLeft", millisUntilFinished);
@@ -207,7 +226,7 @@ public class CountDownService extends Service {
             public void onFinish() {
                 Log.d("VEIKKO2", "Timer onFinish");
                 /*MainActivity.textViewTime.setText("Out of time!"); */
-                MainActivity.pieView.setInnerText("Out of time!");
+                /*MainActivity.pieView.setInnerText("Out of time!"); */
                 DevicePolicyManager deviceManager = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
                 ComponentName compName = new ComponentName(CountDownService.this, MyAdmin.class);
                 boolean active = deviceManager.isAdminActive(compName);
