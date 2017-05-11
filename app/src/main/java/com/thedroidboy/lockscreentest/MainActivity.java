@@ -25,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        finish();
 //    }
 
-    Button btnFinish;
+    RelativeLayout btnFinish;
 
     Button btnLock;
 
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-        btnFinish = (Button) findViewById(R.id.btnFinish);
+        btnFinish =(RelativeLayout) findViewById(R.id.btnFinish);
 
 
         /*    textViewTime = (TextView) findViewById(R.id.textViewTime); */

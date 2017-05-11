@@ -72,6 +72,7 @@
             android:layout_weight="1"
             android:background="@drawable/layout_bg_white"
             android:gravity="center"
+            android:id="@+id/btnFinish"
             >
             <az.plainpie.PieView
                 android:id="@+id/pieView"
@@ -125,15 +126,20 @@
             android:layout_weight="1"
             android:background="@drawable/layout_bg_white"
             android:gravity="center">
-            <com.github.lzyzsd.circleprogress.DonutProgress
-                android:layout_marginLeft="50dp"
-                android:id="@+id/donut_progress"
+            <ImageView
+                android:id="@+id/pandaImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                custom:donut_progress="50"
-                custom:donut_finished_color="@color/kidupPercentageFill"
-                custom:donut_text_color="@color/kidupDarkBlue"
-                custom:donut_circle_starting_degree="270"/>
+                android:layout_marginBottom="40dp"
+                android:src="@drawable/panda_proud_gray"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good work!"
+                android:textSize="16dp"
+                android:layout_centerInParent="true"
+                android:layout_alignBottom="@id/pandaImage"
+                android:layout_marginBottom="-20dp"/>
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -172,6 +178,7 @@
                 plainpie:inner_text_visibility="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
+
                 />
 
             <!--
@@ -194,13 +201,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewTime" />
                 -->
-            <Button
-                android:text="Transfer steps to time"
-                android:textSize="10dp"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnFinish"
-                android:layout_below="@+id/pieView2"/>
+                android:text="Current step count"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/kidupDarkBlue"
+                android:layout_below="@+id/pieView2"
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_marginLeft="10dp"
